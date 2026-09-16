@@ -1,0 +1,41 @@
+/* 1. CSS Reset & Global Box-Sizing */
+/* Reset ini dibuat supaya semua elemen punya aturan dasar yang konsisten. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0; /*Artinya browser tidak memberikan margin dan padding bawaan pada elemen-elemen tersebut. */
+    padding: 0; /*Jadi kita nanti yang menentukan sendiri jaraknya melalui CSS.*/
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*menentukan jenis tulisan*/
+    line-height: 1.6; /*Mengatur jarak antarbaris tulisan*/
+    color: #333; /*mengatur warna teks*/
+    background-color: #f4f6f9; /*Mengatur warna latar belakang halaman*/
+    padding: 20px; /*memberikan ruang di dalam body, sehingga konten tidak langsung menempel ke tepi browser*/
+}
+
+/* 2. component: card (BEM Naming) */
+.showcase-card {  /*Artinya kita sedang memilih class HTML bernama:
+                    class="showcase-card"
+                    Jadi nanti HTML-nya harus punya:
+                    <article class="showcase-card">*/
+    background-color: #ffffff; /*Card → putih.*/
+    border-radius: 8px; /*membuat sudut card melengkung*/
+    border: 1px solid #e1e4e8; /*Memberikan garis tipis di sekeliling card.
+                                    Formatnya: border: ketebalan jenis warna;*/
+    max-width: 600px; /*card tdk akan lebih lebar dari 600px*/
+    margin: 40px auto; /*Artinya:
+                        40px → atas & bawah
+                        auto → kiri & kanan
+                        auto membantu membuat card berada di tengah secara horizontal.*/
+    overflow: hidden; /*bagian isi yang keluar dari batas card akan disembunyikan*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /*Ini yang memberikan bayangan tipis di sekitar card.*/
+}
+
+
+.showcase-card__media {
+    width: 100%; /* Video akan mengikuti lebar card, bukan ukuran asli gambar Unhas. */
+    display: block; /* Supaya elemen video ditampilkan sebagai block dan tidak menyisakan celah kecil seperti elemen inline.*/
+}

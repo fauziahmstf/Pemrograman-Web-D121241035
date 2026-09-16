@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Media Showcase</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!-- menghubungkan html dengan css -->
+</head>
+<body>
+    <article class="showcase-card showcase-card--featured">
+    <!-- perhatikan class-nya.Ada dua:showcase-card Ini BEM Block. sedangkan showcase-card--featured Ini BEM Modifier. -->
+        <video class="showcase-card__media" controls
+                poster="./logo-unhas.png">
+
+        <source src="assets/videos/sample-5s.webm" type="video/webm">
+        <source src="assets/videos/sample-5s.mp4" type="video/mp4">
+        <p>
+            browser anda tidak mendukung pemutaran video HTML5 natif
+        </p>
+        </video>
+
+        <!-- content -->
+        <div class="showcase-card__content">
+            <!-- judul -->
+            <h1 class="showcase-card__title">Video Ajar: Client-Side Logic</h1>
+            <!-- deskripsi -->
+            <p class="showcase-card__description">Video pembelajaran mengenai dasar-dasar client-side logic dalam pengembangan aplikasi web.</p>
+
+            <audio class="showcase-card__audio-player" controls 
+                    preload="metadata">
+                    <!-- controls → menampilkan tombol play, volume, dll.
+                    preload="metadata" → browser cukup memuat informasi dasar audio terlebih dahulu.
+                    Ada dua <source> supaya tersedia format alternatif.  -->
+                <source src="assets/audio/file_example_OOG_1MG.ogg" type="audio/ogg">
+                <source src="assets/audio/file_example_MP3_700KB.mp3" type="audio/mp3">
+            </audio>
+        </div>
+    </article>
+</body>
+</html>
