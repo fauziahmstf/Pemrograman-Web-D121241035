@@ -59,3 +59,13 @@ Ini membuat gambar dan video mengikuti lebar card, bukan muncul dengan ukuran as
 .media-card__audio {
     width: 100%;
 }
+
+/* .media-card--important → mencari card yang punya status penting. */
+/* .media-card__description → menargetkan deskripsi di dalam card tersebut. */
+.media-card--important .media-card__description {
+    /* teks menjadi tebal */
+    font-weight: bold;
+    /* teks berubah warna */
+    color: #1a5276;
+}
+/* Selector gabungan tersebut lebih spesifik daripada .media-card__description biasa, sehingga menunjukkan konsep specificity. */
