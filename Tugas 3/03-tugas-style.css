@@ -7,13 +7,38 @@
     padding: 0;
 }
 
+/* another styling biar cantik */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f6f9;
+    padding: 20px;
+}
+
+/* styling header */
+.page-header {
+    text-align: center;
+    margin: 30px auto 10px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    margin-bottom: 4px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 15px;
+}
+
 /*2. Card BEM Block */
 .media-card {
     background-color: #ffffff;
     max-width: 600px;
-    margin: 40px auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 30px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     overflow: hidden;
 
     transition: transform 0.3s ease, box-shadow 0.3s ease; /*hover effect, supaya perubahan saat hover tidak mendadak, tetapi bergerak halus*/
@@ -37,6 +62,9 @@ Ini membuat gambar dan video mengikuti lebar card, bukan muncul dengan ukuran as
 .media-card__cover img {
     width: 100%;
     display: block;
+    /* ini yang akan membuat cover tidak terasa terlalu besar. */
+    object-fit: cover;
+    display: block;
 }
 
 .media-card__video {
@@ -54,6 +82,8 @@ Ini membuat gambar dan video mengikuti lebar card, bukan muncul dengan ukuran as
 
 .media-card__description {
     margin-bottom: 20px;
+    font-weight: normal;
+    color: #333;
 }
 
 .media-card__audio {
@@ -69,3 +99,16 @@ Ini membuat gambar dan video mengikuti lebar card, bukan muncul dengan ukuran as
     color: #1a5276;
 }
 /* Selector gabungan tersebut lebih spesifik daripada .media-card__description biasa, sehingga menunjukkan konsep specificity. */
+
+/* styling footer */
+.page-footer {
+    text-align: center;
+    margin: 30px auto;
+    color: #777;
+    font-size: 14px;
+}
+
+.page-footer__source {
+    margin-top: 6px;
+    font-size: 12px;
+}

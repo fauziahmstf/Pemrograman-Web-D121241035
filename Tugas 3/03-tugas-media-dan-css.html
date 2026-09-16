@@ -7,13 +7,21 @@
 
     <link rel="stylesheet" href="03-tugas-style.css">
 </head>
+
 <body>
+    <!-- menambahkan header -->
+    <header class="page-header">
+        <h1>E-Learning Kampus</h1>
+        <p>Platform Pembelajaran Pemrograman Web</p>
+    </header>
+
     <!-- Hiasi kartu mengikuti pola BEM dengan margin terpusat, bayangan, sudut melengkung, dan transisi lembut saat hover. -->
     <article class="media-card media-card--featured media-card--important">
     <!-- Kita menambahkan class media-card--important sebagai status tambahan.-->
+
         <picture class="media-card__cover">
-            <source media="(min-width: 768px)" srcset="cover-desktop.webp">
-            <source media="(min-width: 767px)" srcset="cover-mobile.webp">
+            <source media="(min-width: 768px)" srcset="cover-desktop.webp" type="image/webp">
+            <source media="(max-width: 767px)" srcset="cover-mobile.webp" type="image/webp">
             
             <img src="cover-mobile.webp" alt="cover pemrograman web">
         </picture>
@@ -47,5 +55,14 @@
             </audio>
         </div>
     </article>
+
+    <!-- menambahkan footer -->
+    <footer class="page-footer">
+        <p>&copy; 2026 E-Learning Kampus</p>
+        <p class="page-footer__source">
+            Catatan: File video dan audio yang digunakan merupakan sample file
+            yang diunduh dari internet dan digunakan untuk keperluan tugas.
+        </p>
+    </footer>
 </body>
 </html>
