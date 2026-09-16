@@ -8,25 +8,43 @@
     <link rel="stylesheet" href="03-tugas-style.css">
 </head>
 <body>
-    <picture>
-        <source media="(min-width: 768px)" srcset="cover-desktop.webp">
-        <source media="(min-width: 767px)" srcset="cover-mobile.webp">
+    <!-- Hiasi kartu mengikuti pola BEM dengan margin terpusat, bayangan, sudut melengkung, dan transisi lembut saat hover. -->
+    <article class="media-card media-card--featured">
+        <picture class="media-card__cover">
+            <source media="(min-width: 768px)" srcset="cover-desktop.webp">
+            <source media="(min-width: 767px)" srcset="cover-mobile.webp">
+            
+            <img src="cover-mobile.webp" alt="cover pemrograman web">
+        </picture>
         
-        <img src="cover-mobile.webp" alt="cover pemrograman web">
-    </picture>
-    
-    <video controls poster="cover-video.png">
-        <source src="demo.webm" type="video/webm">
-        <source src="demo.mp4" type="video/mp4">
+        <video class="media-card__video" controls poster="cover-video.png">
+            <source src="demo.webm" type="video/webm">
+            <source src="demo.mp4" type="video/mp4">
 
-        Browser Anda tidak mendukung pemutaran video HTML5.
-    </video>
+            Browser Anda tidak mendukung pemutaran video HTML5.
+        </video>
+        
+        <div class="media-card__content">
 
-    <audio controls preload="metadata">
-        <source src="file_example_OOG_1MG.ogg" type="audio/ogg">
-        <source src="file_example_MP3_700KB.mp3" type="audio/mp3">
+            <h1 class="media-card__title">
+                Video Ajar: Dasar Client-Side Logic
+            </h1>
 
-        Browser Anda tidak mendukung pemutaran audio HTML5.
-    </audio>
+            <p class="media-card__description">
+                Video Pembelajaran mengenai dasar-dasar client-side logic dalam pengembangan aplikasi web.
+            </p>
+
+            <h2 class="media-card__audio-title">
+                Dengarkan Penjelasan Audio
+            </h2>
+
+            <audio class="media-card__audio" controls preload="metadata">
+                <source src="file_example_OOG_1MG.ogg" type="audio/ogg">
+                <source src="file_example_MP3_700KB.mp3" type="audio/mp3">
+
+                Browser Anda tidak mendukung pemutaran audio HTML5.
+            </audio>
+        </div>
+    </article>
 </body>
 </html>

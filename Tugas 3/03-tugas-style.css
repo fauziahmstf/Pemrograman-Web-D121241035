@@ -6,3 +6,56 @@
     margin: 0;
     padding: 0;
 }
+
+/*2. Card BEM Block */
+.media-card {
+    background-color: #ffffff;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /*hover effect, supaya perubahan saat hover tidak mendadak, tetapi bergerak halus*/
+}
+
+/* artinya ketika mouse berada di atas card, jalankan style berikutnya. */
+.media-card:hover { 
+    /* card sedikit naik 5px. */
+    transform: translateY(-5px);
+    /* bayangannya dibuat lebih terlihat ketika di-hover. */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 3. Styling media
+Ini membuat gambar dan video mengikuti lebar card, bukan muncul dengan ukuran aslinya yang bisa kelewat besar. */
+.media-card__cover {
+    width: 100%;
+    display: block;
+}
+
+.media-card__cover img {
+    width: 100%;
+    display: block;
+}
+
+.media-card__video {
+    width: 100%;
+    display: block;
+}
+
+.media-card__content {
+    padding: 24px;
+}
+
+.media-card__title {
+    margin-bottom: 12px;
+}
+
+.media-card__description {
+    margin-bottom: 20px;
+}
+
+.media-card__audio {
+    width: 100%;
+}
