@@ -245,3 +245,23 @@ p {
         grid-area: right;
     }
 }
+
+/* 8. Desktop: tiga kolom mulai dari 992px */
+@media (min-width: 992px) {
+    .portal-layout {
+        grid-template-columns: 200px minmax(0, 1fr) 220px;
+        grid-template-areas: "sidebar articles right";
+    }
+
+    .left-sidebar {
+        grid-area: sidebar;
+    }
+
+    .article-area {
+        grid-area: articles;
+    }
+
+    .right-sidebar {
+        grid-area: right;
+    }
+}
