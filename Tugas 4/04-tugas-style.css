@@ -211,3 +211,15 @@ p {
     color: #5d6b82;
     margin-bottom: 0;
 }
+
+/* 6. footer */
+.site-footer {
+    text-align: center;
+    background-color: #0b2265;
+    color: #dce5ff;
+    padding: 24px;
+}
+
+.site-footer p {
+    margin-bottom: 5px;
+}
