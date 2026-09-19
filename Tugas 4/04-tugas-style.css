@@ -187,3 +187,27 @@ p {
     margin-top: auto;
     margin-bottom: 14px;
 }
+
+/* 5. kolom kanan */
+.info-box {
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.info-box ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+}
+
+.info-box a {
+    color: #315b9a;
+}
+
+.info-box p {
+    color: #5d6b82;
+    margin-bottom: 0;
+}
