@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard portal akademik mahasiswa.">
+    <title>Portal Akademik</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        crossorigin="anonymous">
+
+    <!-- CSS buatan sendiri -->
+    <link rel="stylesheet" href="./dashboard-layout.css">
+</head>
+<body>
+    <header class="main-nav">
+        <a class="main-nav__brand" href="#">Portal Akademik</a>
+
+        <nav aria-label="Navigasi utama">
+            <ul class="main-nav__menu">
+                <li><a class="active" href="#">Beranda</a></li>
+                <li><a href="#krs">KRS</a></li>
+                <li><a href="#khs">KHS</a></li>
+                <li><a href="#keluar">Keluar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <aside class="student-sidebar" aria-labelledby="student-info-title">
+            <h2 id="student-info-title">Informasi Mahasiswa</h2>
+            <hr>
+
+            <p><strong>Nama:</strong> Nurul Fauziah Mustafa</p>
+            <p><strong>NIM:</strong> D121241035</p>
+            <p><strong>Status:</strong> Aktif</p>
+        </aside>
+
+        <section class="main-content" aria-labelledby="welcome-title">
+            <div class="welcome-panel">
+                <h1 id="welcome-title">Selamat Datang di Portal Akademik</h1>
+                <p>Akses informasi perkuliahan, distribusi SKS, dan nilai akhir Anda di sini.</p>
+            </div>
+
+            <div class="cards-grid">
+                <article class="card shadow-sm border-light" id="khs">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">Indeks Prestasi Kumulatif</h2>
+                        <p class="display-5">3.85</p>
+                        <a href="#khs-detail" class="btn btn-outline-primary btn-sm">
+                            Lihat Detail KHS
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card shadow-sm border-light" id="krs">
+                    <div class="card-body">
+                        <h2 class="card-title text-success">Total SKS Diambil</h2>
+                        <p class="display-5">84 SKS</p>
+                        <a href="#krs-aktif" class="btn btn-outline-success btn-sm">
+                            Lihat KRS Aktif
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <h2 class="card-title text-warning">Status UKT</h2>
+                        <p class="display-5">Lunas</p>
+                        <span class="badge text-bg-success">
+                            Semester Ganjil 2026/2027
+                        </span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
