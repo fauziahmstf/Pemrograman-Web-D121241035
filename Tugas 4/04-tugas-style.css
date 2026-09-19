@@ -265,3 +265,31 @@ p {
         grid-area: right;
     }
 }
+
+/* 9. Ponsel: semua elemen bertumpuk */
+@media (max-width: 767px) {
+    .site-header {
+        padding: 18px 20px;
+    }
+
+    .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .portal-layout {
+        padding: 0 16px;
+        margin-top: 20px;
+        gap: 18px;
+    }
+
+    .section-heading h1 {
+        font-size: 1.45rem;
+    }
+}
