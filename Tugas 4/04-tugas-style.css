@@ -223,3 +223,25 @@ p {
 .site-footer p {
     margin-bottom: 5px;
 }
+
+/* 7. tablet: kolom kanan disembunyikan */
+@media (min-width: 768px) and (max-width: 991px) {
+    .portal-layout {
+        grid-template-columns: 200px 1fr;
+        grid-template-areas:
+            "sidebar articles"
+            "right right";
+    }
+
+    .left-sidebar {
+        grid-area: sidebar;
+    }
+
+    .article-area {
+        grid-area: articles;
+    }
+
+    .right-sidebar {
+        grid-area: right;
+    }
+}
