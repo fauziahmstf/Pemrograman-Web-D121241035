@@ -140,3 +140,50 @@ p {
     margin-bottom: 8px;
     color: #5d6b82;
 }
+
+/* 4. kolom tengah dan grid mikro */
+.section-heading {
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.section-heading h1 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.section-heading p {
+    margin-bottom: 0;
+    color: #64748b;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.article-card {
+    height: 100%;
+}
+
+.article-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.article-card .card-title {
+    font-size: 1.15rem;
+}
+
+.article-card .card-text {
+    color: #5d6b82;
+}
+
+.article-meta {
+    color: #6c7789;
+    font-size: 0.9rem;
+    margin-top: auto;
+    margin-bottom: 14px;
+}
