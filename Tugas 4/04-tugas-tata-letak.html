@@ -34,23 +34,49 @@
     </header>
 
     <main class="portal-layout">
-        <!-- kolom kiri: sidebar -->
-        <aside class="left-sidebar" aria-labelledby="sidebar-title">
+        <!-- Kolom kiri: sidebar -->
+        <aside class="left-sidebar"
+            aria-labelledby="sidebar-title">
+
             <h2 id="sidebar-title">Menu Jurnal</h2>
 
             <ul class="sidebar-menu">
-                <li><a href="#terbaru">Artikel Terbaru</a></li>
-                <li><a href="#populer">Artikel Populer</a></li>
-                <li><a href="#kategori">Kategori Riset</a></li>
-                <li><a href="#panduan">Panduan Penulis</a></li>
+                <li>
+                    <a href="#terbaru">Artikel Terbaru</a>
+                </li>
+                <li>
+                    <a href="#populer">Artikel Populer</a>
+                </li>
+                <li>
+                    <a href="#kategori">Kategori Riset</a>
+                </li>
+                <li>
+                    <a href="#panduan">Panduan Penulis</a>
+                </li>
             </ul>
 
             <section id="kategori" class="sidebar-section">
                 <h3>Kategori</h3>
-                <p>Teknik Informatika</p>
-                <p>Teknik Elektro</p>
-                <p>Teknik Geologi</p>
+
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#informatika">
+                            Teknik Informatika
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#elektro">
+                            Teknik Elektro
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#geologi">
+                            Teknik Geologi
+                        </a>
+                    </li>
+                </ul>
             </section>
+
         </aside>
 
         <!-- kolom tengah: daftar artikel -->
@@ -62,7 +88,7 @@
 
             <div class="article-grid">
                 <!-- Artikel Teknik Informatika -->
-                <article class="card article-card shadow-sm">
+                <article id="informatika" class="card article-card shadow-sm">
                     <div class="card-body">
                         <span class="badge text-bg-primary mb-2">
                             Teknik Informatika
@@ -89,7 +115,7 @@
 
 
                 <!-- Artikel Teknik Elektro -->
-                <article class="card article-card shadow-sm">
+                <article id="elektro" class="card article-card shadow-sm">
                     <div class="card-body">
                         <span class="badge text-bg-success mb-2">
                             Teknik Elektro
@@ -117,7 +143,7 @@
 
 
                 <!-- Artikel Teknik Geologi -->
-                <article class="card article-card shadow-sm">
+                <article id="geologi" class="card article-card shadow-sm">
                     <div class="card-body">
                         <span class="badge text-bg-warning mb-2">
                             Teknik Geologi
