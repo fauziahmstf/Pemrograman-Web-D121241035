@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Tugas Mandiri Modul 5: Sistem Manajemen Keuangan
 
 require_once './Transaction.php';
 
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $type = $_POST['type'] ?? '';
-    
+
     $amountInput = trim($_POST['amount'] ?? '');
 
     $transactionType = match ($type) {
