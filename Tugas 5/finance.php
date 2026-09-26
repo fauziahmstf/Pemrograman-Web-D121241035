@@ -13,6 +13,48 @@ if (!isset($_SESSION['balance'])) {
 if (!isset($_SESSION['transactions'])) {
     $_SESSION['transactions'] = [];
 }
+
+$errors = [];
+$success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $type = $_POST['type'] ?? '';
+    $amountInput = trim($_POST['amount'] ?? '');
+
+    $transactionType = match ($type) {
+        'deposit' => 'deposit',
+        'withdrawal' => 'withdrawal',
+        default => null
+    };
+
+    if ($transactionType === null) {
+        $errors[] = 'Jenis transaksi tidak valid.';
+    }
+
+    if (
+        $amountInput === '' ||
+        !preg_match('/^\d+(?:\.\d+)?$/', $amountInput) ||
+        (float) $amountInput <= 0
+    ) {
+        $errors[] = 'Jumlah transaksi harus berupa angka desimal positif.';
+    }
+
+    if (empty($errors)) {
+        $transaction = new Transaction(
+            uniqid('TRX-', true),
+            $transactionType,
+            (float) $amountInput
+        );
+
+        try {
+            $transaction->process();
+
+            $success = 'Transaksi berhasil diproses.';
+        } catch (RuntimeException | InvalidArgumentException $e) {
+            $errors[] = $e->getMessage();
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
