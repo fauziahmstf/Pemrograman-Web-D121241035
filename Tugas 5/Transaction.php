@@ -10,7 +10,7 @@ class Transaction
         // Properti tidak boleh diakses sembarangan dari luar class
         private string $id, 
         private string $type,
-        private string $amount
+        private float $amount
     ) {
     }
 

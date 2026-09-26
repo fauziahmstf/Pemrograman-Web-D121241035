@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name="csrf_token"
             value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>"
         >
-        
+
         <label for="type">Jenis Transaksi:</label>
 
         <select name="type" id="type">
@@ -108,6 +108,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Proses Transaksi</button>
     </form>
+
+    <h2>Riwayat Transaksi</h2>
+
+    <?php if (empty($_SESSION['transactions'])): ?>
+
+        <p>Belum ada transaksi.</p>
+
+    <?php else: ?>
+
+        <ul>
+            <?php foreach ($_SESSION['transactions'] as $transaction): ?>
+
+                <li>
+                    <?= htmlspecialchars(
+                        $transaction['id'],
+                        ENT_QUOTES,
+                        'UTF-8'
+                    ) ?>
+
+                    -
+
+                    <?= htmlspecialchars(
+                        $transaction['type'],
+                        ENT_QUOTES,
+                        'UTF-8'
+                    ) ?>
+
+                    -
+
+                    Rp<?= htmlspecialchars(
+                        number_format(
+                            (float) $transaction['amount'],
+                            2,
+                            ',',
+                            '.'
+                        ),
+                        ENT_QUOTES,
+                        'UTF-8'
+                    ) ?>
+                </li>
+
+            <?php endforeach; ?>
+        </ul>
+
+    <?php endif; ?>
 
 </body>
 </html>
