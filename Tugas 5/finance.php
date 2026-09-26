@@ -14,6 +14,10 @@ if (!isset($_SESSION['transactions'])) {
     $_SESSION['transactions'] = [];
 }
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $errors = [];
 $success = '';
 
@@ -73,6 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </p>
 
     <form method="post">
+
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>"
+        >
+        
         <label for="type">Jenis Transaksi:</label>
 
         <select name="type" id="type">
