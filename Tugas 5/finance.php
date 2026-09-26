@@ -22,7 +22,15 @@ $errors = [];
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $postToken = $_POST['csrf_token'] ?? '';
+
+    if (!hash_equals($_SESSION['csrf_token'], $postToken)) {
+        die('Kesalahan Keamanan: Token CSRF tidak cocok.');
+    }
+
     $type = $_POST['type'] ?? '';
+    
     $amountInput = trim($_POST['amount'] ?? '');
 
     $transactionType = match ($type) {
@@ -73,8 +81,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <p>
         Saldo:
-        Rp<?= number_format($_SESSION['balance'], 2, ',', '.') ?>
+        Rp<?= htmlspecialchars(
+            number_format(
+                $_SESSION['balance'],
+                2,
+                ',',
+                '.'
+            ),
+            ENT_QUOTES,
+            'UTF-8'
+        ) ?>
     </p>
+
+    <?php if ($success !== ''): ?>
+        <p>
+            <?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?>
+        </p>
+    <?php endif; ?>
+
+    <?php if (!empty($errors)): ?>
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li>
+                    <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
     <form method="post">
 
