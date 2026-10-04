@@ -32,3 +32,32 @@ dan pengembalian.
 - Peminjaman 1 : N Detail Peminjaman
 - Buku 1 : N Detail Peminjaman
 - Maka Peminjaman dan Buku berelasi M:N melalui Detail Peminjaman.
+
+## 3. Simulasi Normalisasi
+
+### 3.1 Bentuk Tidak Normal (UNF)
+
+Data mentah dalam satu tabel. Kolom buku berisi **kelompok berulang**
+karena satu transaksi bisa meminjam lebih dari satu buku.
+
+| id_peminjaman | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | id_buku | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| PJ001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | B001, B002 | Basis Data, Algoritma | Elmasri, Cormen | 2016, 2022 | P01, P02 | Informatika Press, Gramedia | Bandung, Jakarta |
+| PJ002 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id | 2026-09-03 | 2026-09-10 | NULL | B001 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
+
+**Masalah:** satu sel berisi banyak nilai (tidak atomik) dan ada kelompok berulang.
+
+### 3.2 Bentuk Normal Pertama (1NF)
+
+**Aturan:** setiap sel hanya berisi satu nilai (atomik) dan tidak ada
+kelompok berulang. Kelompok berulang dipecah menjadi baris-baris terpisah.
+Primary key menjadi **gabungan (id_peminjaman, id_buku)**.
+
+| id_peminjaman (PK) | id_buku (PK) | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| PJ001 | B001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
+| PJ001 | B002 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | Algoritma | Cormen | 2022 | P02 | Gramedia | Jakarta |
+| PJ002 | B001 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id | 2026-09-03 | 2026-09-10 | NULL | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
+
+**Hasil:** semua nilai sudah atomik. **Masalah tersisa:** data mahasiswa
+dan buku diulang di banyak baris (redundansi).
