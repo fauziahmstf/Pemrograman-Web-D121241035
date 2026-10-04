@@ -61,3 +61,40 @@ Primary key menjadi **gabungan (id_peminjaman, id_buku)**.
 
 **Hasil:** semua nilai sudah atomik. **Masalah tersisa:** data mahasiswa
 dan buku diulang di banyak baris (redundansi).
+
+### 3.3 Bentuk Normal Kedua (2NF)
+
+**Aturan:** sudah 1NF dan tidak ada **ketergantungan parsial**, yaitu atribut
+non-key yang hanya bergantung pada sebagian dari primary key gabungan.
+
+**Analisis dependensi fungsional** (PK gabungan: id_peminjaman, id_buku):
+- `id_peminjaman` → nim, nama_mhs, prodi, email, tgl_pinjam, tgl_jatuh_tempo (parsial)
+- `id_buku` → judul, pengarang, tahun_terbit, id_penerbit, nama_penerbit, kota_penerbit (parsial)
+- `id_peminjaman, id_buku` → tgl_kembali (utuh)
+
+Maka tabel dipecah menjadi tiga.
+
+**Tabel Peminjaman**
+
+| id_peminjaman (PK) | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo |
+|---|---|---|---|---|---|---|
+| PJ001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 |
+| PJ002 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id | 2026-09-03 | 2026-09-10 |
+
+**Tabel Detail_Peminjaman**
+
+| id_peminjaman (PK, FK) | id_buku (PK, FK) | tgl_kembali |
+|---|---|---|
+| PJ001 | B001 | 2026-09-07 |
+| PJ001 | B002 | 2026-09-07 |
+| PJ002 | B001 | NULL |
+
+**Tabel Buku**
+
+| id_buku (PK) | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+|---|---|---|---|---|---|---|
+| B001 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
+| B002 | Algoritma | Cormen | 2022 | P02 | Gramedia | Jakarta |
+
+**Hasil:** ketergantungan parsial hilang. **Masalah tersisa:** masih ada
+ketergantungan transitif (nim → nama_mhs dan id_penerbit → nama_penerbit).
