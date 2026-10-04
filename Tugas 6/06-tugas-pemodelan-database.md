@@ -148,3 +148,57 @@ Atribut yang bergantung transitif dipindah ke tabel sendiri.
 
 **Hasil:** semua tabel sudah 3NF. Data mahasiswa dan penerbit tersimpan satu
 kali, sehingga tidak ada anomali insert, update, maupun delete.
+
+## 4. Rancangan Tabel Akhir
+
+### 4.1 Tabel `mahasiswa`
+
+| Kolom | Tipe Data | Kunci | Keterangan |
+|---|---|---|---|
+| nim | VARCHAR(15) | PK | Nomor induk mahasiswa |
+| nama | VARCHAR(100) | - | NOT NULL |
+| prodi | VARCHAR(50) | - | NOT NULL |
+| angkatan | YEAR | - | Tahun masuk |
+| email | VARCHAR(100) | - | UNIQUE |
+| no_hp | VARCHAR(15) | - | Boleh NULL |
+
+### 4.2 Tabel `penerbit`
+
+| Kolom | Tipe Data | Kunci | Keterangan |
+|---|---|---|---|
+| id_penerbit | VARCHAR(10) | PK | Contoh: P01 |
+| nama_penerbit | VARCHAR(100) | - | NOT NULL |
+| kota | VARCHAR(50) | - | |
+| alamat | VARCHAR(200) | - | |
+| telepon | VARCHAR(15) | - | |
+
+### 4.3 Tabel `buku`
+
+| Kolom | Tipe Data | Kunci | Keterangan |
+|---|---|---|---|
+| id_buku | VARCHAR(10) | PK | Contoh: B001 |
+| isbn | VARCHAR(20) | - | UNIQUE |
+| judul | VARCHAR(150) | - | NOT NULL |
+| pengarang | VARCHAR(100) | - | NOT NULL |
+| tahun_terbit | YEAR | - | |
+| stok | INT | - | DEFAULT 0, tidak boleh negatif |
+| id_penerbit | VARCHAR(10) | FK | Mengacu ke penerbit(id_penerbit) |
+
+### 4.4 Tabel `peminjaman`
+
+| Kolom | Tipe Data | Kunci | Keterangan |
+|---|---|---|---|
+| id_peminjaman | VARCHAR(10) | PK | Contoh: PJ001 |
+| nim | VARCHAR(15) | FK | Mengacu ke mahasiswa(nim) |
+| tgl_pinjam | DATE | - | NOT NULL |
+| tgl_jatuh_tempo | DATE | - | NOT NULL |
+
+### 4.5 Tabel `detail_peminjaman`
+
+| Kolom | Tipe Data | Kunci | Keterangan |
+|---|---|---|---|
+| id_peminjaman | VARCHAR(10) | PK, FK | Mengacu ke peminjaman(id_peminjaman) |
+| id_buku | VARCHAR(10) | PK, FK | Mengacu ke buku(id_buku) |
+| tgl_kembali | DATE | - | NULL jika belum dikembalikan |
+| denda | DECIMAL(10,2) | - | DEFAULT 0 |
+| status | VARCHAR(10) | - | 'Dipinjam' atau 'Kembali' |
