@@ -202,3 +202,57 @@ kali, sehingga tidak ada anomali insert, update, maupun delete.
 | tgl_kembali | DATE | - | NULL jika belum dikembalikan |
 | denda | DECIMAL(10,2) | - | DEFAULT 0 |
 | status | VARCHAR(10) | - | 'Dipinjam' atau 'Kembali' |
+
+## 5. Visualisasi Relasi (ERD)
+
+```mermaid
+erDiagram
+    PENERBIT ||--o{ BUKU : menerbitkan
+    MAHASISWA ||--o{ PEMINJAMAN : melakukan
+    PEMINJAMAN ||--|{ DETAIL_PEMINJAMAN : memiliki
+    BUKU ||--o{ DETAIL_PEMINJAMAN : dipinjam_dalam
+
+    MAHASISWA {
+        VARCHAR nim PK
+        VARCHAR nama
+        VARCHAR prodi
+        YEAR angkatan
+        VARCHAR email
+        VARCHAR no_hp
+    }
+    PENERBIT {
+        VARCHAR id_penerbit PK
+        VARCHAR nama_penerbit
+        VARCHAR kota
+        VARCHAR alamat
+        VARCHAR telepon
+    }
+    BUKU {
+        VARCHAR id_buku PK
+        VARCHAR isbn
+        VARCHAR judul
+        VARCHAR pengarang
+        YEAR tahun_terbit
+        INT stok
+        VARCHAR id_penerbit FK
+    }
+    PEMINJAMAN {
+        VARCHAR id_peminjaman PK
+        VARCHAR nim FK
+        DATE tgl_pinjam
+        DATE tgl_jatuh_tempo
+    }
+    DETAIL_PEMINJAMAN {
+        VARCHAR id_peminjaman PK
+        VARCHAR id_buku PK
+        DATE tgl_kembali
+        DECIMAL denda
+        VARCHAR status
+    }
+```
+
+**Diagram alur teks (alternatif):**
+
+```
+penerbit (1) ----< (N) buku (1) ----< (N) detail_peminjaman (N) >---- (1) peminjaman (N) >---- (1) mahasiswa
+```
