@@ -256,3 +256,14 @@ erDiagram
 ```
 penerbit (1) ----< (N) buku (1) ----< (N) detail_peminjaman (N) >---- (1) peminjaman (N) >---- (1) mahasiswa
 ```
+
+## 6. Kesimpulan
+- Desain terdiri dari 4 entitas utama (Mahasiswa, Buku, Penerbit, Transaksi
+  Peminjaman) dengan Transaksi Peminjaman dipecah menjadi tabel `peminjaman`
+  dan `detail_peminjaman`.
+- Normalisasi UNF → 1NF → 2NF → 3NF menghilangkan kelompok berulang,
+  ketergantungan parsial, dan ketergantungan transitif.
+- Integritas data dijaga lewat PK dan FK.
+
+## 7. Referensi
+- Materi kuliah Modul 6: Pemodelan Data dan Konsep Basis Data Relasional
