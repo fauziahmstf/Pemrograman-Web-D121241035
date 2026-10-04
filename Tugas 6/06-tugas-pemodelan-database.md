@@ -98,3 +98,53 @@ Maka tabel dipecah menjadi tiga.
 
 **Hasil:** ketergantungan parsial hilang. **Masalah tersisa:** masih ada
 ketergantungan transitif (nim → nama_mhs dan id_penerbit → nama_penerbit).
+
+### 3.4 Bentuk Normal Ketiga (3NF)
+
+**Aturan:** sudah 2NF dan tidak ada **ketergantungan transitif**, yaitu atribut
+non-key yang bergantung pada atribut non-key lain.
+
+**Analisis:**
+- Di Peminjaman: `id_peminjaman → nim → nama_mhs, prodi, email`
+- Di Buku: `id_buku → id_penerbit → nama_penerbit, kota_penerbit`
+
+Atribut yang bergantung transitif dipindah ke tabel sendiri.
+
+**Mahasiswa**
+
+| nim (PK) | nama_mhs | prodi | email |
+|---|---|---|---|
+| 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id |
+| 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id |
+
+**Penerbit**
+
+| id_penerbit (PK) | nama_penerbit | kota_penerbit |
+|---|---|---|
+| P01 | Informatika Press | Bandung |
+| P02 | Gramedia | Jakarta |
+
+**Buku**
+
+| id_buku (PK) | judul | pengarang | tahun_terbit | id_penerbit (FK) |
+|---|---|---|---|---|
+| B001 | Basis Data | Elmasri | 2016 | P01 |
+| B002 | Algoritma | Cormen | 2022 | P02 |
+
+**Peminjaman**
+
+| id_peminjaman (PK) | nim (FK) | tgl_pinjam | tgl_jatuh_tempo |
+|---|---|---|---|
+| PJ001 | 2026001 | 2026-09-01 | 2026-09-08 |
+| PJ002 | 2026002 | 2026-09-03 | 2026-09-10 |
+
+**Detail_Peminjaman** (tidak berubah)
+
+| id_peminjaman (PK, FK) | id_buku (PK, FK) | tgl_kembali |
+|---|---|---|
+| PJ001 | B001 | 2026-09-07 |
+| PJ001 | B002 | 2026-09-07 |
+| PJ002 | B001 | NULL |
+
+**Hasil:** semua tabel sudah 3NF. Data mahasiswa dan penerbit tersimpan satu
+kali, sehingga tidak ada anomali insert, update, maupun delete.
