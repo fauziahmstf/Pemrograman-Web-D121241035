@@ -40,7 +40,7 @@ dan pengembalian.
 Data mentah dalam satu tabel. Kolom buku berisi **kelompok berulang**
 karena satu transaksi bisa meminjam lebih dari satu buku.
 
-| id_peminjaman | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | id_buku | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+| id_peminjaman | nim | nama | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | id_buku | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | PJ001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | B001, B002 | Basis Data, Algoritma | Elmasri, Cormen | 2016, 2022 | P01, P02 | Informatika Press, Gramedia | Bandung, Jakarta |
 | PJ002 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id | 2026-09-03 | 2026-09-10 | NULL | B001 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
@@ -53,7 +53,7 @@ karena satu transaksi bisa meminjam lebih dari satu buku.
 kelompok berulang. Kelompok berulang dipecah menjadi baris-baris terpisah.
 Primary key menjadi **gabungan (id_peminjaman, id_buku)**.
 
-| id_peminjaman (PK) | id_buku (PK) | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+| id_peminjaman (PK) | id_buku (PK) | nim | nama | prodi | email | tgl_pinjam | tgl_jatuh_tempo | tgl_kembali | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | PJ001 | B001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
 | PJ001 | B002 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 | 2026-09-07 | Algoritma | Cormen | 2022 | P02 | Gramedia | Jakarta |
@@ -68,15 +68,15 @@ dan buku diulang di banyak baris (redundansi).
 non-key yang hanya bergantung pada sebagian dari primary key gabungan.
 
 **Analisis dependensi fungsional** (PK gabungan: id_peminjaman, id_buku):
-- `id_peminjaman` → nim, nama_mhs, prodi, email, tgl_pinjam, tgl_jatuh_tempo (parsial)
-- `id_buku` → judul, pengarang, tahun_terbit, id_penerbit, nama_penerbit, kota_penerbit (parsial)
+- `id_peminjaman` → nim, nama, prodi, email, tgl_pinjam, tgl_jatuh_tempo (parsial)
+- `id_buku` → judul, pengarang, tahun_terbit, id_penerbit, nama_penerbit, kota (parsial)
 - `id_peminjaman, id_buku` → tgl_kembali (utuh)
 
 Maka tabel dipecah menjadi tiga.
 
 **Tabel Peminjaman**
 
-| id_peminjaman (PK) | nim | nama_mhs | prodi | email | tgl_pinjam | tgl_jatuh_tempo |
+| id_peminjaman (PK) | nim | nama | prodi | email | tgl_pinjam | tgl_jatuh_tempo |
 |---|---|---|---|---|---|---|
 | PJ001 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id | 2026-09-01 | 2026-09-08 |
 | PJ002 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id | 2026-09-03 | 2026-09-10 |
@@ -91,13 +91,13 @@ Maka tabel dipecah menjadi tiga.
 
 **Tabel Buku**
 
-| id_buku (PK) | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota_penerbit |
+| id_buku (PK) | judul | pengarang | tahun_terbit | id_penerbit | nama_penerbit | kota |
 |---|---|---|---|---|---|---|
 | B001 | Basis Data | Elmasri | 2016 | P01 | Informatika Press | Bandung |
 | B002 | Algoritma | Cormen | 2022 | P02 | Gramedia | Jakarta |
 
 **Hasil:** ketergantungan parsial hilang. **Masalah tersisa:** masih ada
-ketergantungan transitif (nim → nama_mhs dan id_penerbit → nama_penerbit).
+ketergantungan transitif (nim → nama dan id_penerbit → nama_penerbit).
 
 ### 3.4 Bentuk Normal Ketiga (3NF)
 
@@ -105,21 +105,21 @@ ketergantungan transitif (nim → nama_mhs dan id_penerbit → nama_penerbit).
 non-key yang bergantung pada atribut non-key lain.
 
 **Analisis:**
-- Di Peminjaman: `id_peminjaman → nim → nama_mhs, prodi, email`
-- Di Buku: `id_buku → id_penerbit → nama_penerbit, kota_penerbit`
+- Di Peminjaman: `id_peminjaman → nim → nama, prodi, email`
+- Di Buku: `id_buku → id_penerbit → nama_penerbit, kota`
 
 Atribut yang bergantung transitif dipindah ke tabel sendiri.
 
 **Mahasiswa**
 
-| nim (PK) | nama_mhs | prodi | email |
+| nim (PK) | nama | prodi | email |
 |---|---|---|---|
 | 2026001 | Andi Pratama | Informatika | andi@kampus.ac.id |
 | 2026002 | Siti Aulia | Sistem Informasi | siti@kampus.ac.id |
 
 **Penerbit**
 
-| id_penerbit (PK) | nama_penerbit | kota_penerbit |
+| id_penerbit (PK) | nama_penerbit | kota |
 |---|---|---|
 | P01 | Informatika Press | Bandung |
 | P02 | Gramedia | Jakarta |
@@ -148,6 +148,12 @@ Atribut yang bergantung transitif dipindah ke tabel sendiri.
 
 **Hasil:** semua tabel sudah 3NF. Data mahasiswa dan penerbit tersimpan satu
 kali, sehingga tidak ada anomali insert, update, maupun delete.
+
+**Catatan:** pada tahap perancangan tabel akhir (bagian 4), ditambahkan atribut
+pelengkap yang tidak muncul di data contoh, yaitu `angkatan` dan `no_hp`
+(mahasiswa), `alamat` dan `telepon` (penerbit), `isbn` dan `stok` (buku), serta
+`denda` dan `status` (detail_peminjaman). Penambahan ini tidak mengubah
+struktur 3NF karena semuanya bergantung langsung pada primary key tabelnya.
 
 ## 4. Rancangan Tabel Akhir
 
@@ -243,8 +249,8 @@ erDiagram
         DATE tgl_jatuh_tempo
     }
     DETAIL_PEMINJAMAN {
-        VARCHAR id_peminjaman PK
-        VARCHAR id_buku PK
+        VARCHAR id_peminjaman PK, FK
+        VARCHAR id_buku PK, FK
         DATE tgl_kembali
         DECIMAL denda
         VARCHAR status
