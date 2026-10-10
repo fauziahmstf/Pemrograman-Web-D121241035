@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS buku_tamu_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE buku_tamu_db;
+
+CREATE TABLE IF NOT EXISTS buku_tamu (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    pesan TEXT NOT NULL,
+    tanggal_kirim TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
