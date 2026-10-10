@@ -15,10 +15,8 @@ class GuestBook
         string $email,
         string $pesan
     ): bool {
-        $sql = "
-            INSERT INTO buku_tamu (nama, email, pesan)
-            VALUES (:nama, :email, :pesan)
-        ";
+        $sql = "INSERT INTO buku_tamu (nama, email, pesan)
+                VALUES (:nama, :email, :pesan)";
 
         $stmt = $this->pdo->prepare($sql);
 
@@ -31,11 +29,9 @@ class GuestBook
 
     public function getMessages(): array
     {
-        $sql = "
-            SELECT id, nama, email, pesan, tanggal_kirim
-            FROM buku_tamu
-            ORDER BY tanggal_kirim DESC, id DESC
-        ";
+        $sql = "SELECT id, nama, email, pesan, tanggal_kirim
+                FROM buku_tamu
+                ORDER BY tanggal_kirim DESC, id DESC";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
